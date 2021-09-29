@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital@1&display=swap');
+body{
+    background-image: url("img/marble-2398946_1920.jpg");
+    background-position: center;
+}
+nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background-color: black;
+    color: white;
+    z-index: 1;
+}
+nav a{
+    text-decoration: none;
+    color: white;
+    font-family: 'Bebas Neue', cursive;
+}
+
+#portada{
+    position: fixed;
+    left: 39%;
+    top: 10px;
+    font-size: 1.75em;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 200px;
+    text-align: center;
+}
+#portada:hover{
+    background-color: white;
+}
+#portada:hover>a{
+    background-color: white;
+    color: black;
+}
+#iaw{
+    position: fixed;
+    left: 25%;
+    top: 10px;
+    font-size: 1.75em;
+    width: 200px;
+    text-align: center;
+}
+#asgbd{
+    position: fixed;
+    left: 55%;
+    top: 10px;
+    font-size: 1.75em;
+    width: 200px;
+    text-align: center;
+}
+#iaw:hover{
+    background-color: white;
+
+}
+#iaw:hover>a{
+    color: black;
+}
+#asgbd:hover{
+    background-color: white
+}
+#asgbd:hover>a{
+    color: black;
+}
+#practicaIAW{
+    background-color: black;
+    display: none;
+}
+#practicaIAW:hover{
+    background-color: white;
+}
+#practicaIAW:hover>a{
+    background-color: white;
+    color: black;
+}
+#proyectosIAW{
+    background-color: black;
+    display: none;
+}
+#proyectosIAW:hover{
+    background-color: white;
+}
+#proyectosIAW:hover>a{
+    background-color: white;
+    color: black;
+}
+#iaw:hover #practicaIAW{
+    display: block;
+    padding: 5px;
+}
+#iaw:hover #proyectosIAW{
+    display: block;
+    padding: 5px;
+}
+#practicaASGBD{
+    background-color: black;
+    display: none;
+}
+#practicaASGBD:hover{
+    background-color: white;
+}
+#practicaASGBD:hover>a{
+    background-color: white;
+    color: black;
+}
+#proyectosASGBD{
+    background-color: black;
+    display: none;
+}
+#proyectosASGBD:hover{
+    background-color: white;
+}
+#proyectosASGBD:hover>a{
+    background-color: white;
+    color: black;
+}
+#asgbd:hover #proyectosASGBD{
+    display: block;
+    padding: 5px;
+}
+#asgbd:hover #practicaASGBD{
+    display: block;
+    padding: 5px;
+}
+#proyectoHTML{
+    display: none;
+}
+#proyectosIAW:hover #proyectoHTML{
+    display: inline-block;
+}
+#proyectosIAW:hover #proyectoHTML>a{
+
+    color: black;
+}
+header{
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    color: black;
+    font-family: 'Bebas Neue', cursive;
+}
+h1{
+    text-align: center;
+    font-size: 6em;
+}
+main{
+
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 400px;
+
+}
+section>p{
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+section{
+    position: absolute;
+    width: 70%;
+    text-align: center;
+
+    left: 350px;
+}
