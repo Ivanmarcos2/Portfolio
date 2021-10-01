@@ -158,3 +158,23 @@ h1{
     text-align: center;
     font-size: 6em;
 }
+#proyectoREPASO{
+    background-color: black;
+    position: fixed;
+    left: 68%;
+    top: 94px;
+    width: 200px;
+    text-align: center;
+    padding: 4px;
+    display: none;
+}
+#proyectosASGBD:hover #proyectoREPASO{
+    display: inline-block;
+}
+#proyectoREPASO:hover{
+    background-color: white;
+}
+#proyectoREPASO:hover>a{
+    background-color: white;
+    color: black;
+}
