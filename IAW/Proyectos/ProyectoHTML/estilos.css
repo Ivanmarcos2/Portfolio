@@ -161,12 +161,10 @@ h1{
 main{
     position: absolute;
    top: 400px;
-    left: 200px;
-    height: auto;
-    width: 70%;
     background-color: white;
     border: solid black 10px;
     font-size: 1.5em;
+    display: flex;
 }
 main p{
     margin: 20px;
