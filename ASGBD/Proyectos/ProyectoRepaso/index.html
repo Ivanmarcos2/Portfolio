@@ -43,12 +43,1092 @@
 
 </nav>
 <header>
-    <h1>PROYECTO REPASO</h1>
+    <h1>PROYECTO REPASO ASGBD</h1>
 </header>
 <main>
-    <p>
-        <pre>
+        <p>Primero vamos a observar nuestro esquema sobre la base de datos:</p>
+        <figure><img src="img/Esquema.png" alt="Esquema de la base de datos">
+        </figure>
+        <p>Creacion de tablas</p>
+        <p><pre>
 
+     create table canales(
+    id_canal number(2) constraint canales_pk primary key ,
+    nombre  varchar(5)
+);
+create table programas(
+    id_programa number(4) constraint programas_pk primary key ,
+    nombre varchar2(80) ,
+    tiene_capitulos char(2) constraint programas_nn not null
+);
+
+create table capitulos(
+    n_capitulo number(4),
+    id_programa number(4) constraint capitulos_fk references programas(id_programa),
+    duracion interval day to second,
+    constraint capitulos_pk primary key (n_capitulo,id_programa)
+);
+
+create table emisiones(
+    n_capitulo number(3),
+    id_programa number(4) constraint emisiones_fk1 references programas(id_programa),
+    id_canal number(2) constraint emisiones_fk2 references canales(id_canal),
+    edad varchar2(200),
+    descripcion varchar2(300),
+    fecha timestamp,
+    constraint emisiones_pk primary key (n_capitulo,id_programa,id_canal,fecha)
+                      );
+drop table emisiones cascade constraints ;
+--Tabla canales
+insert into canales(id_canal, nombre) values
+        (
+             1,'La 1'
+        );
+
+insert into canales(id_canal, nombre) values
+        (
+             2,'La 2'
+        );
+--Tabla programas
+insert into programas(ID_PROGRAMA, NOMBRE, TIENE_CAPITULOS) VALUES
+        (
+         1,'TELEDIARIO MATINAL','SI'
+        );
+insert into programas(ID_PROGRAMA, NOMBRE, TIENE_CAPITULOS) VALUES
+        (
+         2,'LA HORA DE LA 1','SI'
+         );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         3,'MEJOR CONTIGO','SI'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         4,'INFORMATIVO TERRITORIAL 1','NO'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         5,'TELEDIARIO 1','SI'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         6,'INFORMATIVO TERRITORIAL 2','NO'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         7,'EL TIEMPO','SI'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         8,'DOS VIDAS','SI'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         9,'SERVIR Y PROTEGER','SI'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         10,'EL CAZADOR','SI'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         11,'ESPAÑA DIRECTO','SI'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         12,'FUTBOL UEFA NATION LEAGUE','SI'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         13,'LAZOS DE SANGRE','SI'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         14,'CINE: EL SECUESTRO DE ANABEL','NO'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         15,'LA NOCHE 24H','SI'
+        );
+insert into programas(id_programa, nombre,  tiene_capitulos) VALUES
+        (
+         16,'NOTICIAS 24H','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         17,'CINE: CUESTION DE JUSTICIA','NO'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         18,'ESPAÑOLES POR EL MUNDO','SI'
+        );
+--PROGRAMAS LA 2
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         19,'LA AVENTURA DEL SABER','NO'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         20,'DOCUMENTAL PEQUEÑOS UNIVERSOS DEL UNIVERSO ESCONDIDO','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         21,'DE SEDA Y HIERRO','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         22,'INGLES EN TVE','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         23,'LA 2 EXPRESS','NO'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         24,'DOCUMENTAL EL CARIBE SALVAJE. LOS RITMOS DE LA VIDA','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         25,'DIARIO DE UN NÓMADA. LA RUTA DEL AMBAR POR EUROPA','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         26,'AQUI HAY TRABAJO','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         27,'DOCUMENTAL MUNDOS PREHISTORICOSO','NO'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         28,'DOCUMENTAL TIERRAS EXTREMAS','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         29,'MAÑANAS DE CINE TIERRA SAGRADA','NO'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         30,'DOCUMENTAL LAS AVENTURAS INEDITAS DE JOANNA LUMLEY','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         31,'DOCUMENTAL APULIA, LAS RAICES DE ITALIA','NO'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         32,'SABER Y GANAR','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         33,'GRANDES DOCUMENTALES LOS REINOS DE LOS DEPREDADORES DE AFRICA','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         34,'GRANDES DOCUMENTALES SONIDOS DE LA NATURALEZA','NO'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         35,'DOCUMENTAL 1968: EL AÑO QUE CAMBIO LA HISTORIA','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         36,'DOCUMENTAL EXPLORADORES DEL SABOR','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         37,'ESCALA HUMANA','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         38,'DOCUMENTAL GRANDES DISEÑOS DE VUELTA','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         39,'DOCUMASTER HISTORIAS DE NUESTRO CINE','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         40,'EN PORTADA','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         41,'DOCUMENTAL SUSANA Y EL SEXO','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         42,'CONCIERTOS RADIO 3','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         43,'ZOOM TENDENCIAS','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         44,' PUEBLO DE DIOS','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         45,'DOCUMENTAL LOS TESOROS HUNDIDOS DEL VISTULA','NO'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         46,'MAÑANAS DE CINE: UN HOMBRE LLAMADO NOON','NO'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         47,'DOCUMENTAL SUIZA, EL CORAZON DE LOS ALPES','NO'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         48,'DOCUMENTAL METROPOLIS','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         49,'ATENCION OBRAS','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         50,'LOS BASTARDOS DE PIZZOFALCONE','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         51,'DOCUMENTAL EL ORO DE HITLER','SI'
+        );
+insert into programas(id_programa, nombre, tiene_capitulos) values
+        (
+         52,'DOCUMENTAL ESPIANDO EN LA MANADA','SI'
+        );
+
+--Tabla capitulos
+--La 1
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         161,1,interval '2:30' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         162,1,interval '2:30' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         368,2,interval '1:30' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         369,2,interval '1:30' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         430,2,interval '2:30' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         431,2,interval '2:30' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         18,3,interval '1:30' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         19,3,interval '1:30' hour to minute
+        );
+
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         279,5,interval '55'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         280,5,interval '55'  minute
+        );
+
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         645,7,interval '15' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         646,7,interval '15' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         171,8,interval '55'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         172,8,interval '55'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         263,9,interval '1:00' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         264,9,interval '1:00' hour to minute
+        );
+
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         413,10,interval '55' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         365,10,interval '55' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         4,11,interval '40' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         5,11,interval '1:10'hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         1,12,interval '2:35'hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         2,12,interval '2:05'hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         48,13,interval '1:05' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         30,13,interval '1:25'hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         729,15,interval '1:50'hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         730,15,interval '1:50'hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         279,16,interval '1:25' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         280,16,interval '55'minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         91,18,interval '50' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         18,18,interval '50' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         20,18,interval '55' minute
+        );
+--La 2
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         12,20,interval '30' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         13,20,interval '25' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         27,21,interval '30' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         403,22,interval '25' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         1,24,interval '50' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         1,25,interval '35' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         485,26,interval '25' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         5,28,interval '45' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         1,30,interval '45' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         189,32,interval '45' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         189,32,interval '45' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         4,33,interval '50' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         3,35,interval '40' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         3,36,interval '55' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         40,37,interval '1:30'hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         2,30,interval '45'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         2,38,interval '50'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         111,39,interval '1:55'  hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         148,40,interval '45'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         1,41,interval '55'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         519,42,interval '30'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         164,43,interval '30'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         164,43,interval '30'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         2,35,interval '45'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         1,38,interval '45'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         2,36,interval '55'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         3,33,interval '50'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         404,22,interval '25'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         2,24,interval '55'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         153,44,interval '30'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         486,26,interval '35'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         6,28,interval '45'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         5,48,interval '35'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         190,32,interval '45'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         5,33,interval '50'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         4,35,interval '40'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         4,36,interval '55'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         157,49,interval '30'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         3,30,interval '45'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         3,38,interval '50'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         6,50,interval '1:40' hour to  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         3,51,interval '45'   minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         4,51,interval '45'   minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         494,42,interval '25'   minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         3,52,interval '60'   minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,4,interval '20' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,6,interval '20' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,14,interval '1:30' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,17,interval '2:05' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,19,interval '30' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,23,interval '10' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,27,interval '25' minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,29,interval '1:55' hour to minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,31,interval '55'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,34,interval '50'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,45,interval '60'  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,46,interval '1:30'hour to  minute
+        );
+insert into capitulos(n_capitulo, id_programa, duracion) VALUES
+        (
+         0,47,interval '55' minute
+        );
+
+
+--Tabla emisiones
+
+--La 1 miercoles 6
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            161,1,1,'SIN CALIFICAR','Espacio de información diaria con noticias nacionales e internacionales.',to_date('06/10/2021 06:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            162,1,1,'SIN CALIFICAR','Espacio de información diaria con noticias nacionales e internacionales.',to_date('07/10/2021 06:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            368,2,1,'NO RECOMENDADO A MENORES DE 16 AÑOS','La hora de la 1" es un programa magacine, en el que se aborda la actualidad política y social',to_date('06/10/2021 08:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            430,2,1,'NO RECOMENDADO A MENORES DE 16 AÑOS','La hora de la 1" es un programa magacine, en el que se aborda la actualidad política y social',to_date('06/10/2021 10:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, fecha) VALUES
+        (
+            0,4,1,'SIN CALIFICAR',to_date('06/10/2021 14:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            18,3,1,'NO RECOMENDADO A MENORES DE 7 AÑOS','Un programa magazine de sociedad y cultura, del género conversación, que busca el acercamiento y la intimidad con creadores famosos',to_date('06/10/2021 12:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            18,3,1,'NO RECOMENDADO A MENORES DE 7 AÑOS','Un programa magazine de sociedad y cultura, del género conversación, que busca el acercamiento y la intimidad con creadores famosos',to_date('06/10/2021 14:20','dd/mm/yyyy hh24:MI')
+        );
+
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,fecha) VALUES
+        (
+            279,5,1,'SIN CALIFICAR',to_date('06/10/2021 15:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,  fecha) VALUES
+        (
+            0,6,1,'SIN CALIFICAR',To_date('06/10/2021 15:55','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,  fecha) VALUES
+        (
+            645,7,1,'SIN CALIFICAR',To_date('06/10/2021 16:15','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            171,8,1,'NO RECOMENDADO A MENORES DE 7 AÑOS','La historia se cuenta a través de dos protagonistas femeninas, Carmen (25) y Julia (36), que viven en dos continentes en dos épocas muy diferentes.',to_date('06/10/2021 16:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            263,9,1,'NO RECOMENDADO A MENORES DE 7 AÑOS','Serie diaria que aborda el día a día de una comisaría de barrio en una ciudad española',to_date('06/10/2021 17:25','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+           413,10,1,'PARA TODOS LOS PUBLICOS','El Cazador, un formato en el que cuatro concursantes anónimos unen sus conocimientos para ganar al cazador, un auténtico profesional de los concursos',to_date('06/10/2021 18:25','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+           4,11,1,'PARA TODOS LOS PUBLICOS','Magacine de actualidad de las tardes de La1',to_date('06/10/2021 19:20','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, fecha) VALUES
+        (
+           1,12,1,'SIN CALIFICAR',to_date('06/10/2021 20:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion,fecha) VALUES
+        (
+           48,13,1,'NO RECOMENDADO PARA MENORES DE 16 AÑOS','Lazos de Sangre recupera los inolvidables monólogos de Miguel Gila, el gran genio del humor junto a su teléfono, ese fiel compañero con el que compart',to_date('06/10/2021 22:35','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion,fecha) VALUES
+        (
+           30,13,1,'NO RECOMENDADO PARA MENORES DE 16 AÑOS','Lazos de Sangre recupera los inolvidables monólogos de Miguel Gila, el gran genio del humor junto a su teléfono, ese fiel compañero con el que compart',to_date('06/10/2021 23:40','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion,fecha) VALUES
+        (
+           0,14,1,'NO RECOMENDADO PARA MENORES DE 12 AÑOS','Antonio y Cirilo, dos exconvictos con problemas económicos acaban secuestrando a una joven, Anabel. un secuestro sin ningún sentido ni preparación.',to_date('07/10/2021 01:15','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion,fecha) VALUES
+        (
+           729,15,1,'SIN CALIFICAR','Informativo diario en el que se repasa y analiza la actualidad del día.',to_date('07/10/2021 02:45','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion,fecha) VALUES
+        (
+           279,16,1,'SIN CALIFICAR','Información continua 24 horas nacional e internacional.',to_date('07/10/2021 04:35','dd/mm/yyyy hh24:MI')
+        );
+--la 1 jueves 7
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            369,2,1,'NO RECOMENDADO A MENORES DE 16 AÑOS','La hora de la 1" es un programa magacine, en el que se aborda la actualidad política y social',to_date('07/10/2021 08:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            431,2,1,'NO RECOMENDADO A MENORES DE 16 AÑOS','La hora de la 1" es un programa magacine, en el que se aborda la actualidad política y social',to_date('07/10/2021 10:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            19,3,1,'NO RECOMENDADO A MENORES DE 7 AÑOS','Un programa magazine de sociedad y cultura, del género conversación, que busca el acercamiento y la intimidad con creadores famosos ',to_date('07/10/2021 12:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, fecha) VALUES
+        (
+            0,4,1,'SIN CALIFICAR',to_date('07/10/2021 14:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            19,3,1,'NO RECOMENDADO A MENORES DE 7 AÑOS','Un programa magazine de sociedad y cultura, del género conversación, que busca el acercamiento y la intimidad con creadores famosos ',to_date('07/10/2021 14:20','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, fecha) VALUES
+        (
+            280,5,1,'SIN CALIFICAR',to_date('07/10/2021 15:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, fecha) VALUES
+        (
+            0,6,1,'SIN CALIFICAR',to_date('07/10/2021 15:55','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, fecha) VALUES
+        (
+            646,7,1,'SIN CALIFICAR',to_date('07/10/2021 16:15','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+            172,8,1,'NO RECOMENDADO A MENORES DE 7 AÑOS','La historia se cuenta a través de dos protagonistas femeninas, Carmen (25) y Julia (36), que viven en dos continentes en dos épocas muy diferentes.',to_date('07/10/2021 16:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+          264,9,1,'NO RECOMENDADO A MENORES DE 7 AÑOS','Serie diaria que aborda el día a día de una comisaría de barrio en una ciudad española',to_date('07/10/2021 17:25','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+           256,10,1,'PARA TODOS LOS PUBLICOS','El Cazador, un formato en el que cuatro concursantes anónimos unen sus conocimientos para ganar al cazador, un auténtico profesional de los concursos',to_date('07/10/2021 18:25','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, descripcion, fecha) VALUES
+        (
+           5,11,1,'PARA TODOS LOS PUBLICOS','Magacine de actualidad de las tardes de La1',to_date('07/10/2021 19:20','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, fecha) VALUES
+        (
+           2,12,1,'SIN CALIFICAR',to_date('07/10/2021 20:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, fecha) VALUES
+        (
+           0,17,1,'NO RECOMENDADA A MENORES DE 12 AÑOS',to_date('07/10/2021 22:35','dd/mm/yyyy hh24:MI')
+        );
+
+insert into emisiones( n_capitulo, id_programa, id_canal,descripcion, edad, fecha) VALUES
+        (
+           91,18,1,'NO RECOMENDADO A MENORES DE 7 AÑOS','Viajamos a Israel. Con Eva e Igal conocemos Jerusalén, recorremo el Muro de las Lamentaciones, La Mezquita de la Roca, la Iglesia del Santo Sepulcro.',to_date('08/10/2021 12:40','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,descripcion, edad, fecha) VALUES
+        (
+           18,18,1,'NO RECOMENDADO A MENORES DE 7 AÑOS','Con los españoles que viven en Nueva Zelanda conocemos Auckland, los paisajes de Coromandel, los acantilados de Cathedral Cove, Hobbiton, Hot Water Be',to_date('08/10/2021 01:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad, fecha) VALUES
+        (
+           20,18,1,'NO RECOMENDADO A MENORES DE 7 AÑOS',to_date('08/10/2021 02:20','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,descripcion, fecha) VALUES
+        (
+           730,15,1,'SIN CALIFICAR','Informativo diario en el que se repasa y analiza la actualidad del día.',to_date('08/10/2021 03:15','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,descripcion, fecha) VALUES
+        (
+           280,16,1,'SIN CALIFICAR','Información continua 24 horas nacional e internacional.',to_date('08/10/2021 05:05','dd/mm/yyyy hh24:MI')
+        );
+
+--La 2 miercoles 6
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,descripcion, fecha) VALUES
+        (
+           0,19,2,'PARA TODOS LOS PUBLICOS','Ofrecemos los reportajes "London Calling" y "Universo Sostenible: ¿Se pueden evitar los desastres naturales?".',to_date('06/10/2021 06:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,descripcion, fecha) VALUES
+        (
+           12,20,2,'PARA TODOS LOS PUBLICOS','La serie se centra en la flora y fauna de la Península Ibérica y profundiza en el tratamiento de los micro ecosistemas más representativos de nuestros',to_date('06/10/2021 06:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,descripcion, fecha) VALUES
+        (
+           27,21,2,'PARA TODOS LOS PUBLICOS','Este programa tiene al flamenco como hilo conductor y nos muestra cómo, el tener una discapacidad, no es impedimento para disfrutar del baile y la mús',to_date('06/10/2021 07:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,descripcion, fecha) VALUES
+        (
+           403,22,2,'PARA TODOS LOS PUBLICOS','Hablando ingles',to_date('06/10/2021 07:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad ,fecha) VALUES
+        (
+          0,23,2,'SIN CALIFICAR',to_date('06/10/2021 07:55','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+          1,24,2,'NO RECOMENDADO A MENORES DE 7 AÑOS','Las islas del Caribe, un paraíso que alberga una de las biodiversidades más ricas del mundo en sus bosques tropicales y en sus arrecifes de coral',to_date('06/10/2021 08:05','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+          1,25,2,'PARA TODOS LOS PUBLICOS','Miquel Silvestre está en Ulán Bator, capital de Mongolia, y tras visitar la estatua de Gengis Khan, se encuentra con su primo Rafael Sánchez Silvestre',to_date('06/10/2021 08:55','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+          485,26,2,'PARA TODOS LOS PUBLICOS','Revista de emplo al dia',to_date('06/10/2021 09:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         0,19,2,'PARA TODOS LOS PUBLICOS','Ofrecemos los reportajes "London Calling" y "Universo Sostenible: ¿Se pueden evitar los desastres naturales?',to_date('06/10/2021 09:55','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         0,27,2,'PARA TODOS LOS PUBLICOS','La Tierra se ha enfrentado al menos cinco veces a extinciones masivas, unos cataclismos que acabaron con casi todas las formas de vida...',to_date('06/10/2021 10:50','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         5,28,2,'PARA TODOS LOS PUBLICOS','Víctima de sequías y de incendios sin precedentes, California es una de las zonas sísmicas más inestables del mundo atravesada por una falla.',to_date('06/10/2021 11:45','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         0,29,2,'NO RECOMENDADO PARA MENORES DE 7 AÑOS','En 1861, en el estado de Oregón, un hombre de montaña y su esposa nativa americana viven en una cabaña construida sobre un zona de enterramiento.',to_date('06/10/2021 12:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         1,30,2,'PARA TODOS LOS PUBLICOS','En 1861, en el estado de Oregón, un hombre de montaña y su esposa nativa americana viven en una cabaña construida sobre un zona de enterramiento.',to_date('06/10/2021 14:05','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         1,31,2,'PARA TODOS LOS PUBLICOS','Un viaje a la región de Apulia, el talón de la "bota" italiana, Descubre sus espectaculares costas, sus famosos carnavales, festivales y procesiones',to_date('06/10/2021 14:50','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         189,32,2,'PARA TODOS LOS PUBLICOS','Programa concurso presentado por Jordi Hurtado',to_date('06/10/2021 15:45','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         4,33,2,'NO RECOMENDADO PARA MENORES DE 7 AÑOS','A través de seis entornos diferentes, "Los Reinos de los depredadores de África" se adentra en las complejas vidas de las especies más notables',to_date('06/10/2021 16:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         0,34,2,'PARA TODOS LOS PUBLICOS','La banda sonora de la naturaleza llena de vida nuestro mundo; los sonidos configuran el paisaje y son representativos de un lugar.',to_date('06/10/2021 17:20','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         3,35,2,'NO RECOMENDADO PARA MENORES DE 7 AÑOS','El verano de 1968 en EE.UU. sigue siendo convulso a nivel político y social. La sociedad se manifiesta en contra de la guerra de Vietnam, ...',to_date('06/10/2021 18:10','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         3,36,2,'PARA TODOS LOS PUBLICOS','Centrándose en la bahía del Monte Saint Michel, en la Bretaña, veremos cómo vive una saga de ostricultores y una granja de corderos..',to_date('06/10/2021 18:50','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         40,37,2,'PARA TODOS LOS PUBLICOS','Los balcones son un elemento importante de la vivienda, Son la conexión con el exterior de cualquier estancia y nos sitúa en un espacio intermedio ent',to_date('06/10/2021 19:50','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,fecha) VALUES
+        (
+         0,23,2,'SIN CALIFICAR',to_date('06/10/2021 20:15','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         2,30,2,'PARA TODOS LOS PUBLICOS','Visitaremos la ciudad de Tbilisi, capital de Georgia y pasaremos la frontera hacia Azerbaiyán, hasta la ciudad de Bakú, viendo sus costumbres.',to_date('06/10/2021 21:10','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         2,38,2,'PARA TODOS LOS PUBLICOS','Cerca de un lago, en el condado inglés de Linconshire, Paul Wilkinson y su esposa Emy, construyen una pequeña aldea celta con una gran casa redonda.',to_date('06/10/2021 20:25','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         111,39,2,'PARA TODOS LOS PUBLICOS','11 de mayo de 1896, Edwin Rusby, utilizando un animatógrafo proyecta las primeras imágenes en movimiento que se vieron en España.',to_date('06/10/2021 22:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         148,40,2,'PARA TODOS LOS PUBLICOS','EN PORTADA cuenta el antes y el después de la caída de Kabul.',to_date('06/10/2021 23:55','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         1,41,2,'NO RECOMENDADO PARA MENORES DE 16 AÑOS','Susana Estrada fue la primera artista de España que realizó un desnudo integral sobre un escenario, asumiendo sus innumerables consecuencias.',to_date('07/10/2021 12:40','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         519,42,2,'NO RECOMENDADO PARA MENORES DE 7 AÑOS','Mamá Ladilla nos ponen sobre la mesa un nuevo disco cual filete crudo, Con su nuevo trabajo, `Exhuma y sigue¿, la banda de Juan Abarca vuelve a demost',to_date('07/10/2021 1:35','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         2,35,2,'NO RECOMENDADO PARA MENORES DE 7 AÑOS','Siguen las tensiones en EE.UU. En abril de 1968, Martin Luther King es asesinado, lo que provoca una oleada de incendios y saqueos por el país.',to_date('07/10/2021 2:05','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         1,38,2,'PARA TODOS LOS PUBLICOS','Contra viento y marea, Andy y Jeanette construyen una casa sobre un acantilado en Galloway, suroeste de Escocia.',to_date('07/10/2021 2:50','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         2,36,2,'PARA TODOS LOS PUBLICOS','En este episodio veremos cómo en éste país han surgido pequeñas explotaciones que trabajan en un tipo de agricultura más local.',to_date('07/10/2021 3:35','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         3,33,2,'PARA TODOS LOS PUBLICOS','La costa sur de África alberga algunos de los sistemas de arrecifes más vibrantes, variados y dinámicos del planeta..',to_date('07/10/2021 3:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad ,fecha) VALUES
+        (
+         0,23,2,'SIN CALIFICAR',to_date('07/10/2021 5:20','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         0,19,2,'PARA TODOS LOS PUBLICOS','Ofrecemos los reportajes "London Calling" y "Universo Sostenible: ¿Se pueden evitar los desastres naturales?',to_date('07/10/2021 05:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         0,19,2,'PARA TODOS LOS PUBLICOS','Ofrecemos los reportajes "London Calling" y "Universo Sostenible: ¿Se pueden evitar los desastres naturales?',to_date('07/10/2021 06:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         13,20,2,'PARA TODOS LOS PUBLICOS','La serie se centra en la flora y fauna de la Península Ibérica y profundiza en el tratamiento de los micro ecosistemas más representativos de nuestros',to_date('07/10/2021 06:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,DESCRIPCION ,fecha) VALUES
+        (
+         164,43,2,'PARA TODOS LOS PUBLICOS','Viajamos cada semana por nuestro país mostrando innovadoras propuestas gastronómicas y hoteleras; y las últimas tendencias en bienestar y ocio.',to_date('07/10/2021 06:55','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,fecha) VALUES
+        (
+         0,23,2,'SIN CALIFICAR',to_date('07/10/2021 07:25','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+         404,22,2,'PARA TODOS LOS PUBLICOS','Hablando ingles',to_date('07/10/2021 07:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,edad,fecha) VALUES
+        (
+         0,23,2,'SIN CLASIFICAR',to_date('07/10/2021 07:55','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+         2,24,2,'PARA TODOS LOS PUBLICOS','Las islas del Caribe, un paraíso que alberga una de las biodiversidades más ricas del mundo en sus bosques tropicales y en sus arrecifes de coral.',to_date('07/10/2021 08:05','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+         153,44,2,'PARA TODOS LOS PUBLICOS','Los Hermanos de San Juan de Dios acogen y acompañan a las personas más desfavorecidas en sus centros de Madrid y Murcia.',to_date('07/10/2021 09:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+        486,26,2,'PARA TODOS LOS PUBLICOS','Revista de empleo al dia',to_date('07/10/2021 09:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          0,19,2,'PARA TODOS LOS PUBLICOS','Ofrecemos los reportajes "London Calling" y "Universo Sostenible: ¿Se pueden evitar los desastres naturales?',to_date('07/10/2021 09:55','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,fecha) VALUES
+        (
+          0,23,2,'SIN CALIFICAR',to_date('07/10/2021 09:55','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          0,45,2,'PARA TODOS LOS PUBLICOS','En el siglo XVII, Suecia se convirtió en un país rico y poderoso, mientras que Polonia quedó arruinado en el río Vístula.',to_date('07/10/2021 11:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          6,28,2,'PARA TODOS LOS PUBLICOS','En pleno corazón de las selvas tropicales de Costa Rica y Guatemala, los seres humanos han aprendido a sobrevivir en un entorno salvaje y hostil.',to_date('07/10/2021 12:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          0,46,2,'NO RECOMENDADO A MENORES DE 12 AÑOS','EUn individuo es tiroteado y herido en la cabeza. Como consecuencia de ello pierde la memoria e intentará descubrir quien es y porqué le quieren matar.',to_date('07/10/2021 12:45','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          5,48,2,'PARA TODOS LOS PUBLICOS','Ajena al paso del tiempo, la grandiosidad de Venecia exhibe en cada esquina un tesoro arquitectónico.',to_date('07/10/2021 14:15','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          0,47,2,'PARA TODOS LOS PUBLICOS','Suiza osee un patrimonio insospechado y tiene una cultura nacional que integra tres influencias: alemana, Italiana y francesa',to_date('07/10/2021 14:50','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          190,32,2,'PARA TODOS LOS PUBLICOS','Programa concurso presentado por Jordi Hurtado.',to_date('07/10/2021 15:45','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          5,33,2,'NO RECOMENDADO PARA MENORES DE 7 AÑOS','A través de seis entornos diferentes, "Los Reinos de los depredadores de África" se adentra en las complejas vidas de las especies más notable',to_date('07/10/2021 16:30','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          4,35,2,'NO RECOMENDADO PARA MENORES DE 7 AÑOS','Se acercan la fecha de las elecciones en EE.UU. (5-noviembre-1968) y la lucha entre Nixon y Humphrey está muy reñida, casi empatada.',to_date('07/10/2021 18:10','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          4,36,2,'PARA TODOS LOS PUBLICOS','Nuestro amigo visitará, en Sicilia, una finca cercana a Siracusa en donde se producen, ecológicamente, los mejores cítricos.',to_date('07/10/2021 18:50','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          157,40,2,'PARA TODOS LOS PUBLICOS','Magacín cultural sobre las más diversas manifestaciones artísticas conducido por Cayetana Guillén Cuervo.',to_date('07/10/2021 19:45','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal, edad,fecha) VALUES
+        (
+          0,23,2,'SIN CALIFICAR',to_date('07/10/2021 20:15','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          3,30,2,'PARA TODOS LOS PUBLICOS','Joanna comienza su viaje iraní haciéndonos entender la grandeza de la antigua Persia y cómo influyó en el resto de mundo',to_date('07/10/2021 20:25','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          3,38,2,'PARA TODOS LOS PUBLICOS','JMark Butler y su esposa Penny venden su hogar para construir una casa familiar de tres plantas adaptada para la silla de ruedas de Mark',to_date('07/10/2021 21:10','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          6,50,2,'NO RECOMENDADO A MENORES DE 7 AÑOS','El descubrimiento de un cuerpo en el mar, muerto por una serie de golpes violentos, parece ser un caso ordinario para los Bastardos.',to_date('07/10/2021 22:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          3,51,2,'NO RECOMENDADO A MENORES DE 7 AÑOS','En este episodio se revela la naturaleza de los tratos de las empresas estadounidenses con el Tercer Reich.',to_date('07/10/2021 23:40','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          4,51,2,'NO RECOMENDADO A MENORES DE 7 AÑOS','Con el fin de la Segunda Guerra Mundial en Europa, comenzó la caza de los criminales nazis, junto con el deseo de hacer justicia a sus víctimas.',to_date('08/10/2021 12:25','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          494,42,2,'NO RECOMENDADO A MENORES DE 7 AÑOS','Al Dual es el embajador del rockabilly en España y uno de los nombres más importantes de la guitarra twang actual',to_date('08/10/2021 1:10','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          3,35,2,'NO RECOMENDADO A MENORES DE 7 AÑOS','El verano de 1968 en EE.UU. sigue siendo convulso a nivel político y social. La sociedad se manifiesta en contra de la guerra de Vietnam, ...',to_date('08/10/2021 1:35','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          2,38,2,'PARA TODOS LOS PUBLICOS','Cerca de un lago, en el condado inglés de Linconshire, Paul Wilkinson y su esposa Emy, construyen una pequeña aldea celta con una gran casa redonda.',to_date('08/10/2021 2:20','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          4,36,2,'PARA TODOS LOS PUBLICOS','Nuestro amigo visitará, en Sicilia, una finca cercana a Siracusa en donde se producen, ecológicamente, los mejores cítricos.',to_date('08/10/2021 3:10','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          4,33,2,'NO RECOMENDADO PARA MENORES DE 7 AÑOS','En mares aparentemente interminables de oro verde y reluciente, las praderas de África se extienden a una escala inmensa, Sustentando más animales gra',to_date('08/10/2021 4:00','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,DESCRIPCION, edad,fecha) VALUES
+        (
+          3,52,2,'PARA TODOS LOS PUBLICOS','Este tercer episodio nos dice que las relaciones de amistad en el mundo animal son el núcleo de la comunidad.',to_date('08/10/2021 4:50','dd/mm/yyyy hh24:MI')
+        );
+insert into emisiones( n_capitulo, id_programa, id_canal,edad,fecha) VALUES
+        (
+          0,23,2,'SIN CLASIFICAR',to_date('08/10/2021 4:50','dd/mm/yyyy hh24:MI')
+        );
+
+create view ivan_vista1 as
+select distinct c.nombre,p.nombre nombre_programa,e.n_capitulo,e.fecha Fecha_inicio,e.fecha + duracion Fecha_fin from canales c
+join emisiones e on c.id_canal = e.id_canal
+join programas p on p.id_programa = e.id_programa
+join capitulos c2 on e.id_programa = c2.id_programa and e.n_capitulo= c2.n_capitulo
+order by c.nombre,fecha;
+
+
+create view ivan_vista2 as
+select distinct p.nombre,c2.n_capitulo,e.edad,e.descripcion,to_char(e.fecha,'dd/mm/yyyy hh24:mi') fecha_inicio, to_char(e.fecha + duracion,'dd/mm/yyyy hh24:mi') fecha_fin from emisiones e
+join programas p on p.id_programa = e.id_programa
+join capitulos c2 on e.id_programa = c2.id_programa and e.n_capitulo= c2.n_capitulo
+where id_canal=1;
+
+create view ivan_vista3 as
+select p.nombre,c2.n_capitulo,to_char(e.fecha,'dd/mm/yyyy hh24:mi') fecha from emisiones e
+join programas p on e.id_programa = p.id_programa
+join capitulos c2 on e.id_programa = c2.id_programa and e.n_capitulo= c2.n_capitulo
+where p.nombre= 'MEJOR CONTIGO';
+
+create view ivan_vista5 as
+select  distinct p.nombre , c.n_capitulo,e.descripcion from programas p
+join capitulos c on p.id_programa = c.id_programa
+join emisiones e on p.id_programa = e.id_programa
+where descripcion='texto que quieras';
+
+
+create view ivan_vista6 as
+select distinct c.nombre nombre_canal,p.nombre nombre_programa from emisiones e
+join programas p on p.id_programa = e.id_programa
+join canales c on c.id_canal = e.id_canal
+where fecha='fecha que quieras';
 </pre>
     </p>
 </main>
